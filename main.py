@@ -7,15 +7,15 @@ J = np.loadtxt('I.txt')
 
 fig = plt.figure()
 
-M1 = numpy.array([[J[0], 1], [J[len(J)-1], 1]])
+M1 = numpy.array([[J[0], 1], [J[len(J) - 1], 1]])
 V1 = numpy.array([B[0], B[len(B)-1]])
 coef = numpy.linalg.solve(M1, V1)
 
 k = coef[0]
 b = coef[1]
 
-B_add = B[40]
-J_add = J[40]
+B_add = B[len(B) - 1]
+J_add = J[len(J) - 1]
 
 new_J = np.array([])
 new_B = np.array([])
