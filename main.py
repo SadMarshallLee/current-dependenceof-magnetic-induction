@@ -7,8 +7,8 @@ J = np.loadtxt('I.txt')
 
 fig = plt.figure()
 
-M1 = numpy.array([[J[0], 1], [J[40], 1]])
-V1 = numpy.array([B[0], B[40]])
+M1 = numpy.array([[J[0], 1], [J[len(J)-1], 1]])
+V1 = numpy.array([B[0], B[len(B)-1]])
 coef = numpy.linalg.solve(M1, V1)
 
 k = coef[0]
