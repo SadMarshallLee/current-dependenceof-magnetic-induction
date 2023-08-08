@@ -28,6 +28,9 @@ while B_add <= 1500.0:
 J_max = new_J.max()
 B_max = new_B.max()
 
+fin_B = np.savetxt('final_B.txt', np.concatenate((B, new_B)))
+fin_J = np.savetxt('final_I.txt', np.concatenate((J, new_J)))
+
 plt.text(100, 1700, 'Bmax =' + str(B_max))
 plt.text(100, 1600, 'Imax = ' + str(J_max))
 
@@ -42,5 +45,4 @@ plt.locator_params(axis='x', nbins=20)
 plt.grid()
 
 plt.savefig('B(I).png')
-
 plt.show()
