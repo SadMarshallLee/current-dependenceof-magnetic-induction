@@ -5,10 +5,15 @@ import matplotlib.pyplot as plt
 B = np.loadtxt('B.txt')
 J = np.loadtxt('I.txt')
 
+B_T = np.array([])
+
+for i in range(len(B)):
+    B_T = np.append(B_T, B[i]/10)
+
 fig = plt.figure()
 
 M1 = numpy.array([[J[0], 1], [J[len(J) - 1], 1]])
-V1 = numpy.array([B[0], B[len(B)-1]])
+V1 = numpy.array([B_T[0], B_T[len(B)-1]])
 coef = numpy.linalg.solve(M1, V1)
 
 k = coef[0]
@@ -34,7 +39,7 @@ fin_J = np.savetxt('final_I.txt', np.concatenate((J, new_J)))
 plt.text(100, 1700, 'Bmax =' + str(B_max))
 plt.text(100, 1600, 'Imax = ' + str(J_max))
 
-plt.plot(J, B, 'b')
+plt.plot(J, B_T, 'b')
 plt.plot(new_J, new_B, 'b')
 
 plt.xlabel('I, A')
