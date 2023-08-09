@@ -8,16 +8,20 @@ J = np.loadtxt('I.txt')
 B_T = np.array([])
 
 for i in range(len(B)):
-    B_T = np.append(B_T, B[i]/10)
+    B_T = np.append(B_T, B[i] / 10)
 
-fig = plt.figure()
+coef_b = np.array([])
+coef_k = np.array([])
 
-M1 = numpy.array([[J[0], 1], [J[len(J) - 1], 1]])
-V1 = numpy.array([B_T[0], B_T[len(B)-1]])
-coef = numpy.linalg.solve(M1, V1)
+for i in range(len(B_T) - 1):
+    M1 = numpy.array([[J[i], 1], [J[i + 1], 1]])
+    V1 = numpy.array([B_T[i], B_T[i + 1]])
+    coef = numpy.linalg.solve(M1, V1)
+    coef_b = np.append(coef_b, coef[1])
+    coef_k = np.append(coef_k, coef[0])
 
-k = coef[0]
-b = coef[1]
+k = np.average(coef_k)
+b = np.average(coef_b)
 
 B_add = B[len(B) - 1]
 J_add = J[len(J) - 1]
@@ -25,7 +29,7 @@ J_add = J[len(J) - 1]
 new_J = np.array([])
 new_B = np.array([])
 while B_add <= 1500.0:
-    J_add = J_add + b
+    J_add = J_add + 0.5
     new_J = np.append(new_J, J_add)
     B_add = k * J_add + b
     new_B = np.append(new_B, B_add)
